@@ -12,6 +12,10 @@ def driver(request):
 
 
 def test_example(driver):
+    """
+    :type driver: selenium.webdriver.Chrome
+    """
+
     driver.get("http://www.google.com/")
     driver.find_element_by_name("q").send_keys("webdriver")
     driver.find_element_by_name("btnK").click()
