@@ -9,7 +9,7 @@ def driver(request):
     return wd
 
 
-def test_example(driver):
+def test_task_7(driver):
     """
     :type driver: selenium.webdriver.Chrome
     """
@@ -18,3 +18,5 @@ def test_example(driver):
     driver.find_element_by_name("username").send_keys("admin")
     driver.find_element_by_name("password").send_keys("admin")
     driver.find_element_by_name("login").submit()
+    left_elements_list = driver.execute_script("return $$(")
+
