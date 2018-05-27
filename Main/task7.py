@@ -10,20 +10,25 @@ def driver(request):
 
 
 def test_task_7(driver):
+
     """
     :type driver: selenium.webdriver.Chrome
     """
 
+    def log_in():
+        driver.get("http://localhost/litecart/admin/")
+        driver.find_element_by_name("username").send_keys("admin")
+        driver.find_element_by_name("password").send_keys("admin")
+        driver.find_element_by_name("login").click()
+
     def check_heading(element, page):
         try:
             driver.find_element_by_tag_name(element)
-        except:
-            print("no h1 element found on the " + page)
+        except Exception as E:
+            print(E, "no h1 element found on the " + page)
 
-    driver.get("http://localhost/litecart/admin/")
-    driver.find_element_by_name("username").send_keys("admin")
-    driver.find_element_by_name("password").send_keys("admin")
-    driver.find_element_by_name("login").click()
+    log_in()
+
     items_list = []
 
     left_box_menu = driver.find_element_by_id("box-apps-menu")
@@ -48,7 +53,7 @@ def test_task_7(driver):
                     else:
                         driver.get(_)
                         check_heading('h1', _)
-        except BaseException:
+        except Exception:
             pass
 
 
