@@ -34,7 +34,6 @@ def test_task_7(driver):
 
         inherit_items = driver.find_element_by_class_name(internal_items)
         inherit_items_links = inherit_items.find_elements_by_tag_name(internal_items_links)
-
         if inherit_items:
             for inherit_items in inherit_items_links:
                 internal_items_list.append(inherit_items.get_attribute('href'))

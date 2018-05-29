@@ -30,7 +30,7 @@ def test_task_8(driver):
 
             except Exception as E:
                 print("{}", "{}" + link.get_attribute("title") + "{}" + "{}" + category_name_title.text)\
-                    .format(str(E), "no stickers found for the", "item","in the" )
+                    .format(str(E), "no stickers found for the ", "item"," in the ")
 
     driver.get("http://localhost/litecart/en/")
 
