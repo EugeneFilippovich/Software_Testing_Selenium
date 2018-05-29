@@ -48,18 +48,20 @@ def test_task_9_1(driver):
             country_zones_array.append(double_[2].get_attribute('textContent'))
 
         driver.back()
-            # for zone in country_zones_table:
-            #     zone.find_elements_by_tag_name('tr')
-            #     for zo
+        # for zone in country_zones_table:
+        #     zone.find_elements_by_tag_name('tr')
+        #     for zo
 
     #check sorted list
+    filtered_countries_list_array = list(filter(None, countries_list_array))
 
-    if countries_list_array == sorted(countries_list_array):
+    if filtered_countries_list_array == sorted(filtered_countries_list_array):
         print("Well done! Countries are sorted")
     else:
         print("Ooops, your countries list is NOT sorted!")
 
-    if country_zones_array == sorted(country_zones_array):
+    filtered_country_zones_array = list(filter(None, country_zones_array))
+    if filtered_country_zones_array == sorted(filtered_country_zones_array):
         print("Well done! Country zone list is sorted")
     else:
         print("Ooops, your zones list is NOT sorted!")
@@ -67,11 +69,8 @@ def test_task_9_1(driver):
 
 
 
-
-
-
-    print(countries_list_array)
-    print(country_zones_array)
+    print(filtered_countries_list_array)
+    print(filtered_country_zones_array)
 
 
 
