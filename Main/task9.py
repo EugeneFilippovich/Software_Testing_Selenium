@@ -15,7 +15,7 @@ def test_task_9_1(driver):
     """
     countries_list_array = []
     country_zones_array = []
-    not_null_zones = []
+    not_null_zones_link = []
 
     def log_in():
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries")
@@ -37,15 +37,17 @@ def test_task_9_1(driver):
         regions = null_check[5].get_attribute('textContent')
 
         if int(regions) != 0:
-            not_null_zones.append(country_link)
-            driver.get(country_link)
-            country_zones_table = driver.find_element_by_id("table-zones")
-            country_zones_list = country_zones_table.find_elements_by_css_selector("tr:not(.header)")
-            for _ in country_zones_list:
-                double_ =_.find_elements_by_tag_name('td')
-                country_zones_array.append(double_[2].get_attribute('textContent'))
+            not_null_zones_link.append(country_link)
 
-            driver.back()
+    for _ in not_null_zones_link:
+        driver.get(_)
+        country_zones_table = driver.find_element_by_id("table-zones")
+        country_zones_list = country_zones_table.find_elements_by_css_selector("tr:not(.header)")
+        for _ in country_zones_list:
+            double_ = _.find_elements_by_tag_name('td')
+            country_zones_array.append(double_[2].get_attribute('textContent'))
+
+        driver.back()
             # for zone in country_zones_table:
             #     zone.find_elements_by_tag_name('tr')
             #     for zo
@@ -55,12 +57,12 @@ def test_task_9_1(driver):
     if countries_list_array == sorted(countries_list_array):
         print("Well done! Countries are sorted")
     else:
-        print("Ooops, your list is NOT sorted!")
+        print("Ooops, your countries list is NOT sorted!")
 
     if country_zones_array == sorted(country_zones_array):
         print("Well done! Country zone list is sorted")
     else:
-        print("Ooops, your list is NOT sorted!")
+        print("Ooops, your zones list is NOT sorted!")
 
 
 

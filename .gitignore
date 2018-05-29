@@ -4,3 +4,5 @@ Main/test.py
 .idea/python_example.iml
 .idea/workspace.xml
 *.xml
+Main/.pytest_cache/v/cache/lastfailed
+.idea/workspace.xml
