@@ -30,10 +30,12 @@ def test_task_9_2(driver):
     for row in rows:
         table_row = row.find_elements_by_tag_name("a")
         for _ in table_row:
-            if _ in countries_list_array:
+            if _.get_attribute('href') in countries_list_array:
                 pass
             else:
-                countries_list_array.append(_)
+                countries_list_array.append(_.get_attribute("href"))
+
+    print(countries_list_array)
 
 
 
