@@ -14,7 +14,6 @@ def test_task_9_1(driver):
     :type driver: selenium.webdriver.Chrome
     """
     countries_list_array = []
-    country_zones_array = []
     not_null_zones_link = []
 
     def log_in():
@@ -39,38 +38,38 @@ def test_task_9_1(driver):
         if int(regions) != 0:
             not_null_zones_link.append(country_link)
 
-    for _ in not_null_zones_link:
-        driver.get(_)
+    for link in not_null_zones_link:
+        country_zones_array = []
+        driver.get(link)
         country_zones_table = driver.find_element_by_id("table-zones")
         country_zones_list = country_zones_table.find_elements_by_css_selector("tr:not(.header)")
         for _ in country_zones_list:
             double_ = _.find_elements_by_tag_name('td')
             country_zones_array.append(double_[2].get_attribute('textContent'))
 
+        filtered_country_zones_array = list(filter(None, country_zones_array))
+
+        if filtered_country_zones_array == sorted(filtered_country_zones_array):
+            print("Well done! Country zone list is sorted \n")
+        else:
+            print("Ooops, your zones list for {} is NOT sorted!\n".format(link))
+
+        print(filtered_country_zones_array)
+
         driver.back()
-        # for zone in country_zones_table:
-        #     zone.find_elements_by_tag_name('tr')
-        #     for zo
+
 
     #check sorted list
     filtered_countries_list_array = list(filter(None, countries_list_array))
 
     if filtered_countries_list_array == sorted(filtered_countries_list_array):
-        print("Well done! Countries are sorted")
+        print("Well done! Countries are sorted\n")
     else:
-        print("Ooops, your countries list is NOT sorted!")
-
-    filtered_country_zones_array = list(filter(None, country_zones_array))
-    if filtered_country_zones_array == sorted(filtered_country_zones_array):
-        print("Well done! Country zone list is sorted")
-    else:
-        print("Ooops, your zones list is NOT sorted!")
+        print("Ooops, your countries list is NOT sorted!\n")
 
 
+    print(countries_list_array)
 
-
-    print(filtered_countries_list_array)
-    print(filtered_country_zones_array)
 
 
 
