@@ -58,7 +58,6 @@ def test_task_9_1(driver):
 
         driver.back()
 
-
     #check sorted list
     filtered_countries_list_array = list(filter(None, countries_list_array))
 
@@ -112,15 +111,5 @@ def test_task_9_2(driver):
         else:
             print("\nCheck your sorting for {} country".format(href))
         driver.back()
-
-
-
-
-
-
-
-
-
-
 
 
