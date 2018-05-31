@@ -50,7 +50,7 @@ def test_task_9_1(driver):
         filtered_country_zones_array = list(filter(None, country_zones_array))
 
         if filtered_country_zones_array == sorted(filtered_country_zones_array):
-            print("\nWell done! Country zone list is sorted \n")
+            print("\nWell done! Country {} zone list is sorted \n".format(link))
         else:
             print("\nOoops, your zones list for {} is NOT sorted!\n".format(link))
 
