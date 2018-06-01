@@ -9,50 +9,55 @@ def driver(request):
     return wd
 
 
-def test_task_9_2(driver):
+def test_task_10(driver):
     """
     :type driver: selenium.webdriver.Chrome
     """
 
-    countries_list_array = []
 
     def log_in():
-        driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones")
-        driver.find_element_by_name("username").send_keys("admin")
-        driver.find_element_by_name("password").send_keys("admin")
-        driver.find_element_by_name("login").click()
+        driver.get("http://localhost/litecart/")
 
     log_in()
 
-    table = driver.find_element_by_id("content")
-    rows = table.find_elements_by_class_name('row')
-    for row in rows:
-        table_row = row.find_elements_by_tag_name('a')
-        link = table_row[0].get_attribute('href')
-        countries_list_array.append(link)
+    category = driver.find_element_by_id("box-campaigns")
+    item_link = category.find_element_by_class_name('link')
 
-    for href in countries_list_array:
-        zones_array = []
-        driver.get(href)
-        zones_table = driver.find_element_by_id("table-zones")
-        zones = zones_table.find_elements_by_css_selector("tr:not(.header)")
-        for _ in zones:
-            try:
-                double_ = _.find_elements_by_tag_name('td')
-                elements = double_[2]
-                zone_name = elements.find_element_by_css_selector('[selected = selected]')
-                zones_array.append(zone_name.get_attribute('textContent'))
-            except Exception:
-                pass
+    # item name
+    MP_item_name = item_link.find_element_by_class_name('name').get_attribute('textContent')
 
-        if zones_array == sorted(zones_array):
-            print("\nZones for {} country sorted well".format(href))
-        else:
-            print("\nCheck your sorting for {} country".format(href))
-        driver.back()
+    # regular-price line text and price check
+    MP_regular_price_font_line = item_link.find_element_by_tag_name("s").get_attribute('textContent')
+
+    # regular-price color check
+    MP_regular_price_color = driver.find_element_by_class_name('regular-price').value_of_css_property("color")
+
+    # campaign-price strong text and price check
+    MP_campaign_price_strong = item_link.find_element_by_tag_name("strong").get_attribute('textContent')
+
+    # campaign-price color check
+    MP_campaign_price_strong = driver.find_element_by_class_name('campaign-price').value_of_css_property("color")
+    item_link.click()
 
 
+    driver.get("http://localhost/litecart/en/rubber-ducks-c-1/subcategory-c-2/yellow-duck-p-1")
 
+    item_box = driver.find_element_by_id('box-product')
+
+    # item-page item name
+    IP_item_name = item_box.find_element_by_class_name("title").get_attribute('textContent')
+
+    # regular-price line text and price check
+    IP_item_regular_price = item_box.find_element_by_tag_name("s").get_attribute('textContent')
+
+    # regular-price color check
+    IP_regular_price_color = driver.find_element_by_class_name('regular-price').value_of_css_property("color")
+
+    # campaign-price strong text and price check
+    IP_campaign_price_strong = item_box.find_element_by_tag_name("strong").get_attribute('textContent')
+
+    # campaign-price color check
+    IP_campaign_price_strong = driver.find_element_by_class_name('campaign-price').value_of_css_property("color")
 
 
 
