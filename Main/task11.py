@@ -19,7 +19,7 @@ def driver(request):
     return wd
 
 
-def test_task_10(driver):
+def test_task_11(driver):
     """
     :type driver: selenium.webdriver.Chrome
     """
