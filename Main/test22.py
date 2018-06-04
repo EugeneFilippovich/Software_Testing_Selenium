@@ -6,7 +6,6 @@ from selenium import webdriver
 path_to_file = 'Main/darkwing_duck_-_screenshot_-_h_-_2016.jpg'
 abs_path = os.path.abspath(path_to_file)
 
-
 @pytest.fixture
 def driver(request):
     wd = webdriver.Chrome()
