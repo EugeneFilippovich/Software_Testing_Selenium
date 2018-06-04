@@ -27,7 +27,7 @@ def test_task_10(driver):
     driver.get("http://localhost/litecart/")
 
 
-    def user_creation(_first_name, _second_name, _address, _postcode, _city, _country, _state, _phone, _password,):
+    def user_creation(_first_name, _second_name, _address, _postcode, _city, _country, _state, _phone, _password):
         login_form = driver.find_element_by_css_selector('[name = login_form]')
         new_user = login_form.find_element_by_tag_name('a')
         new_user.click()
