@@ -71,17 +71,23 @@ def test_task_10(driver):
 
     add_item_to_cart()
 
+    # количество в корзине обновляется, но в самой корзине элемента нет, поэтому time.sleep
+    time.sleep(2)
     driver.find_element_by_link_text('Checkout »').click()
     print(cart_items_quantity)
-    time.sleep(3)
 
 
 
-    table = driver.find_element_by_id('box-checkout-summary')
+    table = driver.find_element_by_id('order_confirmation-wrapper')
     lines = table.find_elements_by_css_selector('tr:not(.header):not(.footer)')
-
+    print(lines[0].text)
+    print(lines[1].text)
+    print(lines[2].text)
+    print(lines[3].text)
+    print(lines[4].text)
+    # откуда берется 5 элементов, если
     for line in lines:
-        item_line = line.find_element_by_xpath('.//td[contains(text(), item)]')
+        item_line = line.find_element_by_xpath('.//*[contains(@class, item)]')
         print(item_line)
         # remove_button = driver.find_element_by_name('remove_cart_item')
         # remove_button.click()
