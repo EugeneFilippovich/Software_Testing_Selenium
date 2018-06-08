@@ -93,30 +93,6 @@ def test_task_10(driver):
 
     remove_item()
 
-
-    # remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
-    # rmw2 = wait.until(EC.visibility_of(remove_buttons[0]))
-    # rmw2.click()
-    # wait.until(EC.staleness_of(lines[0]))
-    #
-    # remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
-    # rmw3 = wait.until(EC.visibility_of(remove_buttons[0]))
-    # rmw3.click()
-
-
-
-
-
-
-    # wait.until(EC.visibility_of(remove_buttons[1]))
-    # remove_buttons[1].click()
-    # time.sleep(5)
-    #
-    # wait.until(EC.visibility_of(remove_buttons[2]))
-    # remove_buttons[2].click()
-    # time.sleep(5)
-
-
     time.sleep(3)
     # откуда берется 5 элементов, если
     # for line in lines:
