@@ -28,14 +28,13 @@ def test_task_10(driver):
         driver.get("http://localhost/litecart/")
 
 
+
     def wait_cart_update(element):
         global cart_items_quantity
         try:
             element = wait.until(lambda d: element.find_element_by_xpath('//span[starts-with(text(), {})]'.format(str(cart_items_quantity))))
             if cart_items_quantity < 3:
                 cart_items_quantity += 1
-            else:
-                pass
         except ValueError:
             print('Item has not been added to the cart!')
 
@@ -80,15 +79,49 @@ def test_task_10(driver):
 
     table = driver.find_element_by_id('order_confirmation-wrapper')
     lines = table.find_elements_by_css_selector('tr:not(.header):not(.footer)')
-    print(lines[0].text)
-    print(lines[1].text)
-    print(lines[2].text)
-    print(lines[3].text)
-    print(lines[4].text)
+
+    def remove_item():
+        view_port = driver.find_element_by_id('checkout-cart-wrapper')
+        for _ in range(3, len(lines)):
+            remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
+            for double_ in remove_buttons:
+                rmw = wait.until(EC.visibility_of(double_))
+                rmw.click()
+                wait.until(EC.staleness_of(lines[0]))
+                break
+
+
+    remove_item()
+
+
+    # remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
+    # rmw2 = wait.until(EC.visibility_of(remove_buttons[0]))
+    # rmw2.click()
+    # wait.until(EC.staleness_of(lines[0]))
+    #
+    # remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
+    # rmw3 = wait.until(EC.visibility_of(remove_buttons[0]))
+    # rmw3.click()
+
+
+
+
+
+
+    # wait.until(EC.visibility_of(remove_buttons[1]))
+    # remove_buttons[1].click()
+    # time.sleep(5)
+    #
+    # wait.until(EC.visibility_of(remove_buttons[2]))
+    # remove_buttons[2].click()
+    # time.sleep(5)
+
+
+    time.sleep(3)
     # откуда берется 5 элементов, если
-    for line in lines:
-        item_line = line.find_element_by_xpath('.//*[contains(@class, item)]')
-        print(item_line)
+    # for line in lines:
+    #     item_line = line.find_element_by_xpath('.//*[contains(@class, item)]')
+    #     print(item_line.text)
         # remove_button = driver.find_element_by_name('remove_cart_item')
         # remove_button.click()
         # time.sleep(2)
