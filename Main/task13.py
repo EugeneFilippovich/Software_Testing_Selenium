@@ -61,7 +61,7 @@ def test_task_10(driver):
         table = driver.find_element_by_id('order_confirmation-wrapper')
         lines = table.find_elements_by_css_selector('tr:not(.header):not(.footer)')
         view_port = driver.find_element_by_id('checkout-cart-wrapper')
-        for _ in range(len(lines) - 2):
+        for _ in range(len(lines) - 3):
             remove_buttons = view_port.find_elements_by_css_selector('[value = Remove]')
             for double_ in remove_buttons:
                 wait.until(EC.visibility_of(view_port.find_element_by_name('cart_form')))
