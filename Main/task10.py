@@ -37,10 +37,10 @@ def test_task_10(driver):
     MP_regular_price_size = dict(MP_price_wrapper.find_element_by_class_name('regular-price').size)
 
     # campaign-price strong text and price check
-    MP_campaign_price_strong = MP_price_wrapper.find_element_by_tag_name("strong").get_attribute('textContent')
+    MP_campaign_price_strong_text = MP_price_wrapper.find_element_by_tag_name("strong").get_attribute('textContent')
 
     # campaign-price color check
-    MP_campaign_price_strong = MP_price_wrapper.find_element_by_class_name('campaign-price').value_of_css_property("color")
+    MP_campaign_price_strong_color = MP_price_wrapper.find_element_by_class_name('campaign-price').value_of_css_property("color")
 
     # campaign-price element size
     MP_campaign_price_size = dict(MP_price_wrapper.find_element_by_class_name('campaign-price').size)
@@ -64,10 +64,10 @@ def test_task_10(driver):
     IP_regular_price_size = dict(IP_price_wrapper.find_element_by_class_name('regular-price').size)
 
     # campaign-price strong text and price check
-    IP_campaign_price_strong = IP_price_wrapper.find_element_by_tag_name("strong").get_attribute('textContent')
+    IP_campaign_price_strong_text = IP_price_wrapper.find_element_by_tag_name("strong").get_attribute('textContent')
 
     # campaign-price color check
-    IP_campaign_price_strong = IP_price_wrapper.find_element_by_class_name('campaign-price').value_of_css_property("color")
+    IP_campaign_price_strong_color = IP_price_wrapper.find_element_by_class_name('campaign-price').value_of_css_property("color")
 
     # campaign-price element size
     IP_campaign_price_size = dict(IP_price_wrapper.find_element_by_class_name('campaign-price').size)
@@ -81,16 +81,27 @@ def test_task_10(driver):
         if MP_regular_price_font_line == IP_item_regular_price:
             print('Regular price is same on both pages')
 
-        if MP_campaign_price_strong == IP_campaign_price_strong:
+        if MP_campaign_price_strong_text == IP_campaign_price_strong_text:
             print('Campaign price is same on both pages')
 
     def check_reg_price_font_and_color():
-        print('Price element with tag <s> was found. Element has {} color on the main page'
-              ' and {} on the dedicated page. Correct.'.format(MP_regular_price_color, IP_regular_price_color))
+        MP_regular = MP_regular_price_color.replace('rgba', "").replace("(", "").replace(",", "").replace(")", "").split()
+        IP_regular = IP_regular_price_color.replace('rgba', "").replace("(", "").replace(",", "").replace(")", "").split()
+        print(MP_regular, IP_regular)
+        if MP_regular[0] == MP_regular[1] == MP_regular[2]:
+            print('Color is correct')
+        if IP_regular[0] == IP_regular[1] == IP_regular[2]:
+            print('Color is correct')
+
 
     def check_campaign_price_font_and_color():
-        print('Price element with tag <strong> was found. Element has {} color on the main page'
-              ' and {} on the dedicated page. Correct.'.format(MP_campaign_price_strong, IP_campaign_price_strong))
+        MP_campaign = MP_campaign_price_strong_color.replace('rgba', "").replace("(", "").replace(",", "").replace(")", "").split()
+        IP_campaign = IP_campaign_price_strong_color.replace('rgba', "").replace("(", "").replace(",", "").replace(")", "").split()
+        print(MP_campaign, IP_campaign)
+        if MP_campaign[1] == MP_campaign[2] == '0':
+            print('Color is correct')
+        if IP_campaign[1] == IP_campaign[2] == '0':
+            print('Color is correct')
 
     def compare_element_size():
         if MP_regular_price_size.get('height') < MP_campaign_price_size.get('height') and\
