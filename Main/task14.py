@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -38,16 +37,14 @@ def test_task_14(driver):
     lines = form.find_elements_by_tag_name('tr')
     main_window = driver.current_window_handle
     main_window_title = driver.title
-    html = driver.find_element_by_tag_name('html')
     for line in lines:
         try:
             a = line.find_element_by_css_selector('[target = _blank]')
             a.click()
             new_window = driver.window_handles[1]
-            driver.switch_to.window(new_window)
-            # есть использовать строку 49, то тест сразу же заканчивается на первом пробеге цикла. Почему?
-            # wait.until(EC.presence_of_element_located(html))
             wait.until(EC.number_of_windows_to_be(2))
+            driver.switch_to.window(new_window)
+            wait.until(EC.presence_of_element_located((By.TAG_NAME, 'html')))
             new_window_title = driver.title
             if main_window_title != new_window_title:
                 print('\nnew tab opened successfully')

@@ -1,4 +1,5 @@
 {
   "churches.py": true,
-  "task9.py::test_task_9_2": true
+  "task9.py::test_task_9_2": true,
+  "test_file.py::test_task_10": true
 }
