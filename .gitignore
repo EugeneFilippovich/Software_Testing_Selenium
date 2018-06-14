@@ -7,3 +7,4 @@ Main/test.py
 Main/.pytest_cache/v/cache/lastfailed
 .idea/workspace.xml
 *.iml
+*.xml
