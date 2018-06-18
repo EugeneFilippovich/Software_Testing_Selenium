@@ -1,5 +1,5 @@
-
-
+import time
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 
 
@@ -11,6 +11,8 @@ class ItemPage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.value = 1
+        self.wait = WebDriverWait(self.driver, 10)
 
     def add_item(self, size):
         product_box = self.driver.find_element_by_id('box-product')
@@ -20,8 +22,19 @@ class ItemPage:
             size_selection.select_by_visible_text(size)
         except Exception:
             pass
-
         add_to_cart.click()
+        return self
+
+    def wait_cart_update(self):
+        cart = self.driver.find_element_by_id('cart')
+        try:
+            self.wait.until(lambda d: cart.find_element_by_xpath('//span[starts-with(text(), {})]'.format(str(self.value))))
+            if self.value < 3:
+                self.value += 1
+            else:
+                time.sleep(1)
+        except ValueError:
+            print('Item has not been added to the cart!')
         return self
 
     def checkout(self):

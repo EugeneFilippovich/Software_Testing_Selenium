@@ -9,7 +9,7 @@ class MainPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def load_main_page(self):
+    def open(self):
         self.driver.get("http://localhost/litecart/")
         return self
 

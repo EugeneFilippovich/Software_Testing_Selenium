@@ -36,7 +36,7 @@ def test_task_10(driver):
         except ValueError:
             print('Item has not been added to the cart!')
 
-    def add_item_to_cart():
+    def add_item_to_cart(size):
         most_popular = driver.find_element_by_id('box-most-popular')
         most_popular_items = most_popular.find_elements_by_class_name('link')
         most_popular_items[0].click()
@@ -45,7 +45,7 @@ def test_task_10(driver):
         add_to_cart = product_box.find_element_by_css_selector('[name = add_cart_product]')
         try:
             size_selection = Select(product_box.find_element_by_name('options[Size]'))
-            size_selection.select_by_visible_text('Small')
+            size_selection.select_by_visible_text(size)
         except Exception:
             pass
 
@@ -73,15 +73,15 @@ def test_task_10(driver):
 
     log_in()
 
-    add_item_to_cart()
+    add_item_to_cart('Small')
 
     log_in()
 
-    add_item_to_cart()
+    add_item_to_cart('Small')
 
     log_in()
 
-    add_item_to_cart()
+    add_item_to_cart('Small')
 
     # количество в корзине обновляется, но в самой корзине элемента нет, хотя выше ожидание на появление
     # элемента настроено. Поэтому time.sleep

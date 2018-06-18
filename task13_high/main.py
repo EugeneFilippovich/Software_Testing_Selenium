@@ -1,47 +1,22 @@
-from selenium import webdriver
-from task13_high.pages.main_page import MainPage
-from task13_high.pages.item_page import ItemPage
-from task13_high.pages.cart_page import CartPage
-import time
+import pytest
+from task13_high.app.application import Application
 
 
-class Task:
-
-    """
-    :type driver: selenium.webdriver.Chrome
-    """
-
-    def __init__(self):
-        self.driver = webdriver.Chrome()
-        self.main_page = MainPage(self.driver)
-        self.item_page = ItemPage(self.driver)
-        self.cart_page = CartPage(self.driver)
-
-    def quit(self):
-        self.driver.quit()
-
-    def main_page_load(self):
-        self.main_page.load_main_page()
+@pytest.fixture
+def app(request):
+    applic = Application()
+    request.addfinalizer(applic.quit)
+    return applic
 
 
-a = Task()
-a.main_page_load()
-a.main_page.select_item()
-time.sleep(2)
-a.item_page.add_item('small')
-time.sleep(2)
-a.main_page_load()
-a.main_page.select_item()
-time.sleep(2)
-a.item_page.add_item('small')
-time.sleep(2)
-a.main_page_load()
-a.main_page.select_item()
-time.sleep(2)
-a.item_page.add_item('small')
-time.sleep(2)
-a.item_page.checkout()
-time.sleep(2)
-a.cart_page.remove_items()
-time.sleep(2)
-a.quit()
+
+app.main_page_load()
+app.main_page.select_item()
+app.item_page.add_item('Small').wait_cart_update()
+app.main_page_load()
+app.main_page.select_item()
+app.item_page.add_item('Small').wait_cart_update()
+app.main_page_load()
+app.main_page.select_item()
+app.item_page.add_item('Small').wait_cart_update().checkout()
+app.cart_page.remove_items()

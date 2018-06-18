@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 
 class CartPage:
@@ -24,5 +25,6 @@ class CartPage:
                 rmw.click()
                 self.wait.until(EC.staleness_of(lines[0]))
                 break
+            continue
         self.wait.until(EC.staleness_of(self.driver.find_element_by_id('box-checkout-summary')))
         return self
