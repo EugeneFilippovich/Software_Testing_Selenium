@@ -8,15 +8,32 @@ def app(request):
     request.addfinalizer(applic.quit)
     return applic
 
+# Работает
+a = Application()
+a.main_page_load()
+a.item_select()
+a.item_to_cart()
+a.main_page_load()
+a.item_select()
+a.item_to_cart()
+a.main_page_load()
+a.item_select()
+a.item_to_cart()
+a.checkout_items()
+a.clear_cart()
 
+a.quit()
 
-app.main_page_load()
-app.main_page.select_item()
-app.item_page.add_item('Small').wait_cart_update()
-app.main_page_load()
-app.main_page.select_item()
-app.item_page.add_item('Small').wait_cart_update()
-app.main_page_load()
-app.main_page.select_item()
-app.item_page.add_item('Small').wait_cart_update().checkout()
-app.cart_page.remove_items()
+# Не работает
+# def test_app(app):
+#     app.main_page_load()
+#     app.item_select()
+#     app.item_to_cart()
+#     app.main_page_load()
+#     app.item_select()
+#     app.item_to_cart()
+#     app.main_page_load()
+#     app.item_select()
+#     app.item_to_cart()
+#     app.checkout_items()
+#     app.clear_cart()
