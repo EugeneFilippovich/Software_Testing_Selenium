@@ -2,9 +2,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-
 d = DesiredCapabilities.CHROME
 d['loggingPrefs'] = {"browser": "ALL"}
+
 
 @pytest.fixture
 def driver(request):
@@ -19,6 +19,7 @@ def test_task_17(driver):
     """
 
     items_links = []
+
     def log_in():
         driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1")
         driver.find_element_by_name("username").send_keys("admin")
@@ -36,7 +37,3 @@ def test_task_17(driver):
         driver.get(_)
         for l in driver.get_log("browser"):
             print(l)
-
-
-
-
