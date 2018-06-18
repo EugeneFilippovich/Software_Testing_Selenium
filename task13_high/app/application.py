@@ -34,7 +34,7 @@ class Application:
         return self
 
     def item_to_cart(self):
-        self.item_page.add_item('small')
+        self.item_page.add_item('Small')
         self.item_page.wait_cart_update()
 
     def checkout_items(self):

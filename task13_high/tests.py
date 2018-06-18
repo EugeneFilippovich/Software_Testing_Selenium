@@ -1,12 +1,6 @@
 import pytest
+from task13_high.fixture import app
 from task13_high.app.application import Application
-
-
-@pytest.fixture
-def app(request):
-    applic = Application()
-    request.addfinalizer(applic.quit)
-    return applic
 
 # Работает
 a = Application()
@@ -23,6 +17,7 @@ a.checkout_items()
 a.clear_cart()
 
 a.quit()
+
 
 # Не работает
 # def test_app(app):
