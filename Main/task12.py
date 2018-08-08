@@ -5,9 +5,9 @@ from selenium.webdriver.support.ui import Select
 import time
 
 
-path_to_file = '\darkwing_duck_-_screenshot_-_h_-_2016.jpg'
+path_to_file = 'darkwing_duck_-_screenshot_-_h_-_2016.jpg'
 # Вот здесь происходит очень странный join, но работает, что странно.
-abs_path = '{}{}'.format(os.path.abspath(os.path.join(os.path.dirname(__file__))), path_to_file)
+abs_path = '{}'.format(os.path.abspath(os.path.join(os.path.dirname(__file__), path_to_file)))
 abs_path_new = abs_path.replace("\\", "\\\\")
 
 
